@@ -15,14 +15,14 @@ class CreateTableDetalleventa extends Migration
     {
         Schema::create('detalleVenta', function (Blueprint $table) {
             $table->unsignedInteger('idVenta');
-            $table->unsignedInteger('idProducto');
+            $table->unsignedInteger('idStock');
             $table->float('precioFinal');
             $table->float('precioVenta');
             $table->timestamps();
 
             $table->foreign('idVenta')->references('id')->on('venta')->onDelete('cascade');
-            $table->foreign('idProducto')->references('id')->on('producto')->onDelete('cascade');
-            $table->primary(['idVenta','idProducto']);
+            $table->foreign('idStock')->references('id')->on('stock')->onDelete('cascade');
+            $table->primary(['idVenta','idStock']);
         });
     }
 

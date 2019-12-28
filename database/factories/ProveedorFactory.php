@@ -9,6 +9,6 @@ $factory->define(Proveedor::class, function (Faker $faker) {
     return [
         'idTienda'=>$faker->randomElement([1,2,3]),
         'nombre'=>$faker->name,
-        'saldo'=>$faker->randomFloat(5,0,null),
+        'saldo'=>$faker->randomFloat(5,0,99999.999),
     ];
 });

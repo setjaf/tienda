@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             'tienda',
             'usuario',
             'venta',
+            'usuarioTienda',
         ]);
 
         $this->call(PersonaSeeder::class);
@@ -40,14 +41,24 @@ class DatabaseSeeder extends Seeder
         $this->call(RolPermisoSeeder::class);
 
         $this->call(UsuarioSeeder::class);
-        
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+
+        $this->call(TiendaSeeder::class);
+
+        $this->call(UsuarioTiendaSeeder::class);
+
+        $this->call(VentaSeeder::class);
+
+        $this->call(CategoriaSeeder::class);
+
+        $this->call(MarcaSeeder::class);        
 
         $this->call(ProductoSeeder::class);
         
         $this->call(ProveedorSeeder::class);
 
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+        $this->call(StockSeeder::class);
+
+        $this->call(DetalleVentaSeeder::class);
 
         $this->call(ProveedorProductoSeeder::class);
 

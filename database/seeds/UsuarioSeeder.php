@@ -19,5 +19,21 @@ class UsuarioSeeder extends Seeder
             'contrasena' => bcrypt('y0s0yp0ll0'),
             'correo_verified_at' => new DateTime('now'),
         ]);
+
+        Usuario::create([
+            'idPersona' => '1',
+            'idRol' => '1',
+            'correo' => 'p1@gmail.com',
+            'contrasena' => bcrypt('y0s0yp0ll0'),
+            'correo_verified_at' => new DateTime('now'),
+        ]);
+
+        Usuario::create([
+            'idPersona' => '1',
+            'idRol' => '1',
+            'correo' => 'p2@gmail.com',
+            'contrasena' => bcrypt('y0s0yp0ll0'),
+            'correo_verified_at' => new DateTime('now'),
+        ]);
     }
 }

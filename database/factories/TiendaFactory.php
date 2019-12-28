@@ -11,7 +11,7 @@ $factory->define(Tienda::class, function (Faker $faker) {
         'nombre' => $faker->word,
         'calle' => $faker->streetName,
         'numero' => $faker->buildingNumber,
-        'cp' => $faker->postcode,
+        'cp' => $faker->randomNumber(5,true),
         'balance' => $faker->randomFloat(5,0,9999.99),
     ];
 });
