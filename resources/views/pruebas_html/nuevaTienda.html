@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nueva tienda</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <header class="w-100 container-fluid bg-dark">
+
+        <div class="row justify-content-between px-3">
+
+            <div class="title text-light">
+                <h1>Tienda</h1>
+            </div>
+    
+            <div class="menu col-md-4 my-auto">
+                <ul class="nav justify-content-around">
+                    <li class="nav-item ">
+                        <a href="/nueva" class="text-light ">Crear nueva tienda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Crear nuevo usuario</a>
+                    </li>
+                </ul>
+            </div>
+        </div>        
+
+    </header>
+
+    <section class="container min-vh-100 py-5">
+
+        <div class="row justify-content-center my-auto">
+            <div class="w-100 mb-3 mx-3">
+                <h2>Crear una nueva tienda</h2>
+            </div>
+            
+            <form action="" class="row col-md-8 justify-content-center">
+                
+                <div class="form-group col-md-6">
+                    <label for="nombreTienda">Nombre de la tienda:</label>
+                    <input type="text" name="nombreTienda" placeholder="Nombre tienda" class="form-control">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="calleTienda">Calle:</label>
+                    <input type="text" name="calleTienda" placeholder="Calle" class="form-control">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="numeroTienda">Numero exterior:</label>
+                    <input type="text" name="numeroTienda" placeholder="0000" class="form-control">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="cpTienda">CP:</label>
+                    <input type="text" name="cpTienda" placeholder="00000" class="form-control">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="usuario">Administrador de la tienda:</label>
+                    <input type="email" name="usuario" class="form-control" placeholder="correo@ejemplo.com">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="usuario">Contraseña administrador:</label>
+                    <input type="password" name="contrasena" class="form-control" placeholder="contraseña">
+                </div>
+
+                <input type="submit" value="Guardar tienda nueva" class="btn btn-primary">
+
+            </form>
+        </div>
+
+    </section>
+    
+    <footer class="w-100 container-fluid bg-dark">
+
+        <div class="row justify-content-center">
+            <span class="text-light"> by setjafet </span>
+        </div>        
+
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>

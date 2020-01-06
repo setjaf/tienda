@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nueva tienda</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <header class="w-100 container-fluid bg-dark">
+
+        <div class="row justify-content-between px-3">
+
+            <div class="title text-light">
+                <h1>Tienda</h1>
+            </div>
+
+            <div class="menu col-md-4 my-auto">
+                <ul class="nav justify-content-around">
+                    <li class="nav-item ">
+                        <a href="/nueva" class="text-light ">Crear nueva tienda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Crear nuevo usuario</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </header>
+
+    <section class="container min-vh-100 py-5">
+
+        <div class="row justify-content-center my-auto">
+            <div class="w-100 mb-3 mx-3">
+                <h2>Crear una nueva tienda</h2>
+            </div>
+
+            <form action="" class="row col-md-8 justify-content-center">
+
+                <div class="form-group col-md-6">
+                    <label for="nombreProducto">Nombre del producto:</label>
+                    <input type="text" name="nombreProducto" placeholder="Nombre tienda" class="form-control">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="nombreProducto">Tipo unidad de medida:</label>
+                    <select name="unidadMedida" id="" class="form-control">
+                        <option value="1">ml (mililitros)</option>
+                        <option value="2">g (gramos)</option>
+                        <option value="3">u (unidades)</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="idCategoria">Categoria:</label>
+                    <select name="idCategoria" id="" class="form-control">
+                        <option value="">Elige una categoria</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="idMarca">Marca:</label>
+                    <select name="idMarca" id="" class="form-control">
+                        <option value="">Elige una marca</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="nombreProducto">Tipo de venta:</label>
+                    <select name="tipoVenta" id="tipoVenta" class="form-control" onchange="if($('#tipoVenta').val()==1){$('#group-tamano').hide()}else{$('#group-tamano').show()}">
+                        <option value="2">pieza</option>
+                        <option value="1">granel</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6" id="group-tamano">
+                    <label for="tamano">Tamaño del producto:</label>
+                    <input type="number" name="tamano" placeholder="0.00" class="form-control">
+                </div>
+                <div class="w-100"></div>
+
+                <div class="form-group col-md-6" id="group-tamano">
+                    <label for="tamano">Imagen del producto:</label>
+                    <div class="text-center overflow-hidden">
+                        <img id="imagenProducto" class="mw-100">
+                    </div>
+                    <input type="file" name="imagen_url" id="imagen_url" placeholder="0.00" class="form-control">
+                </div>
+
+                <div class="w-100"></div>
+
+                <input type="submit" value="Guardar tienda nueva" class="btn btn-primary">
+
+            </form>
+
+
+
+        </div>
+
+    </section>
+
+    <footer class="w-100 container-fluid bg-dark">
+
+        <div class="row justify-content-center">
+            <span class="text-light"> by setjafet </span>
+        </div>
+
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+        function readURL(input) {
+            console.log(input);
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                $('#imagenProducto').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imagen_url").change(function() {
+            readURL(this);
+        });
+    </script>
+</body>
+</html>

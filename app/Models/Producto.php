@@ -8,6 +8,22 @@ class Producto extends Model
 {
     protected $table = 'producto';
 
+    protected $casts = [
+        'id' => 'string',
+        'vericado' => 'boolean'
+    ];
+
+    protected $fillable = [
+        'id',
+        'producto',
+        'formaVenta',
+        'idCategoria',
+        'idMarca',
+        'unidadMedida',
+        'tamano',
+        'image_url',
+    ];
+
     public function marca()
     {
         return $this->belongsTo(Marca::class, 'idMarca');

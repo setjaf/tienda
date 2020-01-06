@@ -14,13 +14,15 @@ class CreateTableProducto extends Migration
     public function up()
     {
         Schema::create('producto', function (Blueprint $table) {
-            $table->increments('id');
+            $table->string('id',13)->unique()->primary();
             $table->string('producto');
+            $table->string('imagen_url')->nullable(true);
             $table->unsignedInteger('idCategoria');
             $table->unsignedInteger('idMarca');
-            $table->enum('unidadMedida', ['L', 'Kg', 'Pz']);
-            $table->enum('tipoVenta', ['granel', 'pieza']);
+            $table->enum('unidadMedida', ['mL', 'g', 'u']);
+            $table->enum('formaVenta', ['granel', 'pieza']);
             $table->float('tamano')->default(0.00);
+            $table->boolean('verificado')->default(false);
             $table->timestamps();
 
             $table->foreign('idCategoria')->references('id')->on('categoria')->onDelete('cascade');

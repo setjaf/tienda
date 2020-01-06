@@ -22,10 +22,10 @@ class CreateUsersTable extends Migration
             $table->string('contrasena');
             $table->rememberToken();
             $table->timestamps();
-            
+
             $table->foreign('idPersona')->references('id')->on('persona')->onDelete('cascade');
             $table->foreign('idRol')->references('id')->on('rol')->onDelete('cascade');
-            
+
         });
     }
 

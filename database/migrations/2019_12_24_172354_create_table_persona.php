@@ -22,6 +22,7 @@ class CreateTablePersona extends Migration
             $table->char('curp',18)->unique()->nullable(false);
             $table->char('rfc',13)->unique()->nullable(false);
             $table->char('telefono',13);
+            $table->string('imagen_url')->nullable(true);
             $table->timestamps();
         });
     }

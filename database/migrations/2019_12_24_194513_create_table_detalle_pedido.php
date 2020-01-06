@@ -15,7 +15,7 @@ class CreateTableDetallePedido extends Migration
     {
         Schema::create('detallePedido', function (Blueprint $table) {
             $table->unsignedInteger('idPedidoProveedor');
-            $table->unsignedInteger('idProducto');
+            $table->string('idProducto',13);
             $table->float('precio');
             $table->float('unidades');
             $table->float('total');

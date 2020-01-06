@@ -15,7 +15,7 @@ class CreateTableProveedorProducto extends Migration
     {
         Schema::create('proveedorProducto', function (Blueprint $table) {
             $table->unsignedInteger('idProveedor');
-            $table->unsignedInteger('idProducto');
+            $table->string('idProducto',13);
             $table->timestamps();
 
             $table->foreign('idProveedor')->references('id')->on('proveedor')->onDelete('cascade');

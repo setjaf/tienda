@@ -15,11 +15,12 @@ class CreateTableStock extends Migration
     {
         Schema::create('stock', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('idProducto');
+            $table->string('idProducto',13);
             $table->unsignedInteger('idTienda');
             $table->float('cantidadDisponible')->default(0.00);
             $table->float('cantidadDeseada')->default(0.00);
             $table->float('precioVenta')->default(0.00);
+            $table->boolean('activo')->default(true);
             $table->timestamps();
 
             $table->foreign('idProducto')->references('id')->on('producto')->onDelete('cascade');
