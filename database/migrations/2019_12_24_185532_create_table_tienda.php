@@ -21,8 +21,9 @@ class CreateTableTienda extends Migration
             $table->string('numero');
             $table->char('cp', 5);
             $table->float('balance')->default(0.00);
+            $table->boolean('activo')->default(true);
             $table->timestamps();
-            
+
             $table->foreign('idUsuario')->references('id')->on('usuario')->onDelete('cascade');
         });
     }

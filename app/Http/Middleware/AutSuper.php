@@ -25,7 +25,7 @@ class AutSuper
 
         $usuario = Usuario::all()->where('id',$_SESSION['idUsuario'])->first();
 
-        if(($usuario->rol->id != 1)){
+        if(($usuario->rol->id != 1) & ($usuario->rol->activo)){
             return redirect('super/login');
         }
 

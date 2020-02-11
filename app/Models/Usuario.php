@@ -57,5 +57,6 @@ class Usuario extends Authenticatable
      */
     protected $casts = [
         'correo_verified_at' => 'datetime',
+        'activo' => 'boolean',
     ];
 }

@@ -8,6 +8,11 @@ class Tienda extends Model
 {
     protected $table = 'tienda';
 
+    protected $casts = [
+        'activo' => 'boolean',
+        'vericado' => 'boolean',
+    ];
+
     public function administrador()
     {
         return $this->belongsTo(Usuario::class, 'idUsuario');
@@ -18,7 +23,7 @@ class Tienda extends Model
         return $this->hasMany(Gasto::class, 'idTienda');
     }
 
-    public function productos()
+    public function stock()
     {
         return $this->hasMany(Stock::class, 'idTienda');
     }
@@ -42,7 +47,7 @@ class Tienda extends Model
     {
         return $this->hasMany(PedidoProveedor::class, 'idTienda');
     }
-    
+
 
 
 }

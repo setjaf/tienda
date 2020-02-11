@@ -17,7 +17,7 @@ class SuperController extends Controller
         return view('superUsuario/indexUsuario');
 
     }
-
+//----------------------- Login Super Usuario ----------------------------
     function getLogin(){
 
         return view('superUsuario/loginUsuario');
@@ -52,20 +52,21 @@ class SuperController extends Controller
 
         return redirect()->back()->withInput($request->input());
     }
+//....................... Login Super Usuario ............................
 
+//----------------------- Productos --------------------------
     function showProductos(){
         return view('superUsuario/productos')
-            ->with('productos',Producto::orderBy('updated_at','DESC')->get());
+            ->with('productos',Producto::where('activo',true)->orderBy('updated_at','DESC')->get());
     }
 
     function getCreateProductos(){
         return view('superUsuario/createProducto')
-            ->with('categorias',Categoria::all())
-            ->with('marcas',Marca::all());
+            ->with('categorias',Categoria::where('activo',true)->get())
+            ->with('marcas',Marca::where('activo',true)->get());
     }
 
-    function postCreateProductos(Request $request)
-    {
+    function postCreateProductos(Request $request){
         $data = request()->validate([
             'id' => 'required|max:13',
             'producto' => 'required',
@@ -74,6 +75,8 @@ class SuperController extends Controller
             'idMarca'=>'required',
             'unidadMedida' => 'required',
             'tamano' => 'required_if:formaVenta,2',
+            'activo'=>'nullable',
+            'verificado'=>'nullable',
         ]);
 
         $producto = new Producto([
@@ -84,19 +87,170 @@ class SuperController extends Controller
             'idMarca' => $data['idMarca'],
             'unidadMedida' => $data['unidadMedida'],
             'tamano' => $data['tamano'],
+            'activo' => !empty($data['activo']),
+            'verificado' => !empty($data['verificado']),
         ]);
 
-        $producto->verificado = true;
-        $filename = $data['id'].'.'.request()->imagen_url->getClientOriginalExtension();
-        request()->imagen_url->move(public_path('img'), $filename);
+        if (isset(request()->imagen_url)) {
+            $producto->verificado = true;
+            $filename = $data['id'].'.'.request()->imagen_url->getClientOriginalExtension();
+            request()->imagen_url->move(public_path('img'), $filename);
 
-        $producto->imagen_url=$filename;
+            $producto->imagen_url=$filename;
+        }
 
         if(!$producto->save()){
             File::delete($filename);
+            return redirect()->back()->withInput();
+        }else{
+            return view('superUsuario/createProducto')
+            ->with('categorias',Categoria::where('activo',true)->get())
+            ->with('marcas',Marca::where('activo',true)->get())
+            ->with('guardado',true);
         }
 
-        return redirect()->back()->withInput();
+        return redirect()->back();
 
     }
+
+    function getUpdateProductos($id)
+    {
+        return view('superUsuario/updateProducto')
+            ->with('producto',Producto::where('activo',true)->where('id',$id)->first())
+            ->with('categorias',Categoria::where('activo',true)->get())
+            ->with('marcas',Marca::where('activo',true)->get());
+    }
+
+    function postUpdateProductos($id){
+        $data = request()->validate([
+            'id' => 'required|max:13',
+            'producto' => 'required',
+            'formaVenta' => 'required',
+            'idCategoria'=>'required',
+            'idMarca'=>'required',
+            'unidadMedida' => 'required',
+            'tamano' => 'required_if:formaVenta,2',
+            'activo'=>'nullable',
+            'verificado'=>'nullable',
+            'eliminarImagen'=>'nullable',
+        ]);
+
+        $producto = Producto::where('id',$data['id'])->first();
+
+        $producto->producto = $data['producto'];
+        $producto->formaVenta = $data['formaVenta'];
+        $producto->idCategoria = $data['idCategoria'];
+        $producto->idMarca = $data['idMarca'];
+        $producto->unidadMedida = $data['unidadMedida'];
+        $producto->tamano = $data['tamano'];
+        $producto->activo = !empty($data['activo']);
+        $producto->verificado = !empty($data['verificado']);
+
+        if($producto->save()){
+            return view('superUsuario/updateProducto')
+                ->with('producto',Producto::where('activo',true)->where('id',$id)->first())
+                ->with('categorias',Categoria::where('activo',true)->get())
+                ->with('marcas',Marca::where('activo',true)->get())
+                ->with('guardado',true);
+        }else{
+            return view('superUsuario/updateProducto')
+                ->with('producto',Producto::where('activo',true)->where('id',$id)->first())
+                ->with('categorias',Categoria::where('activo',true)->get())
+                ->with('marcas',Marca::where('activo',true)->get())
+                ->with('guardado',false);
+        }
+
+    }
+
+//....................... Productos ..........................
+
+//-----------------------  Marcas --------------------------
+    function showMarcas(){
+        return view('superUsuario/marcas')
+            ->with('marcas',Marca::where('activo',true)->orderBy('updated_at','DESC')->get());
+    }
+
+    function postCreateMarcas(Request $request)
+    {
+        $data = request()->validate([
+            'marca' => 'required',
+            'descripcion' => 'required',
+            'activo'=>'nullable',
+            'verificado'=>'nullable',
+        ]);
+
+        $marca = new Marca([
+            'marca' => $data['marca'],
+            'descripcion' => $data['descripcion'],
+            'activo' => !empty($data['activo']),
+            'verificado' => !empty($data['verificado']),
+        ]);
+
+        if($marca->save()){
+            return view('superUsuario/marcas')
+                ->with('marcas',Marca::where('activo',true)->orderBy('updated_at','DESC')->get())
+                ->with('guardado',true);
+        }else{
+            return view('superUsuario/marcas')
+                ->with('marcas',Marca::where('activo',true)->orderBy('updated_at','DESC')->get())
+                ->with('guardado',false);
+        }
+    }
+
+    function postUpdateMarcas(Request $request)
+    {
+        //$data = request()->all();
+        //dd($data);
+
+        $data = request()->validate([
+            'idmarca' => 'required',
+            'marca' => 'required',
+            'descripcion' => 'required',
+            'activo'=>'nullable',
+            'verificado'=>'nullable',
+        ]);
+
+        //dd($data,empty($data['activo']));
+
+        $marca = Marca::where('id',$data['idmarca'])->first();
+        $marca->marca = $data['marca'];
+        $marca->descripcion = $data['descripcion'];
+        $marca->activo = !empty($data['activo']);
+        $marca->verificado = !empty($data['verificado']);
+
+        //dd($marca);
+
+        if($marca->save()){
+            return view('superUsuario/marcas')
+                ->with('marcas',Marca::where('activo',true)->orderBy('updated_at','DESC')->get())
+                ->with('guardado',true);
+        }else{
+            return view('superUsuario/marcas')
+                ->with('marcas',Marca::where('activo',true)->orderBy('updated_at','DESC')->get())
+                ->with('guardado',false);
+        }
+    }
+
+    function postDeleteMarcas(Request $request)
+    {
+        $data = request()->validate([
+            'idmarca' => 'required',
+        ]);
+
+        $marca = Marca::where('id',$data['idmarca'])->first();
+
+        $marca->activo = false;
+
+        if($marca->save()){
+            return view('superUsuario/marcas')
+                ->with('marcas',Marca::where('activo',true)->orderBy('updated_at','DESC')->get())
+                ->with('guardado',true);
+        }else{
+            return view('superUsuario/marcas')
+                ->with('marcas',Marca::where('activo',true)->orderBy('updated_at','DESC')->get())
+                ->with('guardado',false);
+        }
+    }
+
+//....................... Marcas ..........................
 }

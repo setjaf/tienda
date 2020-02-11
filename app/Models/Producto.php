@@ -10,6 +10,7 @@ class Producto extends Model
 
     protected $casts = [
         'id' => 'string',
+        'activo' => 'boolean',
         'vericado' => 'boolean'
     ];
 

@@ -8,8 +8,20 @@ class Marca extends Model
 {
     protected $table = 'marca';
 
+    protected $casts = [
+        'activo' => 'boolean',
+        'vericado' => 'boolean',
+    ];
+
+    protected $fillable = [
+        'marca',
+        'descripcion',
+        'activo',
+        'verificado',
+    ];
+
     public function productos()
     {
-        return $this->hasMany(Productos::class, 'idMarca');
+        return $this->hasMany(Producto::class, 'idMarca');
     }
 }

@@ -18,6 +18,7 @@ class CreateTableProveedor extends Migration
             $table->unsignedInteger('idTienda');
             $table->string('nombre')->charset('utf8');
             $table->float('saldo');
+            $table->boolean('activo')->default(true);
             $table->timestamps();
 
             $table->foreign('idTienda')->references('id')->on('tienda')->onDelete('cascade');

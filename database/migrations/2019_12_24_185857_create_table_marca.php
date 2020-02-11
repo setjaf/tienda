@@ -17,6 +17,8 @@ class CreateTableMarca extends Migration
             $table->increments('id');
             $table->string('marca')->charset('utf8');
             $table->string('descripcion')->charset('utf8');
+            $table->boolean('verificado')->default(false);
+            $table->boolean('activo')->default(true);
             $table->timestamps();
         });
     }

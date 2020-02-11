@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('correo_verified_at')->nullable();
             $table->string('contrasena');
             $table->rememberToken();
+            $table->boolean('activo')->default(true);
             $table->timestamps();
 
             $table->foreign('idPersona')->references('id')->on('persona')->onDelete('cascade');

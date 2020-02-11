@@ -14,5 +14,6 @@ $factory->define(Producto::class, function (Faker $faker) {
         'unidadMedida' => $faker->randomElement([1,2,3]),
         'formaVenta' => $faker->randomElement([1,2]),
         'tamano' => $faker->randomFloat(3,0,999),
+        'imagen_url' => 'default.jpg'
     ];
 });
