@@ -18,6 +18,9 @@ class CreateTableUsuarioTienda extends Migration
             $table->unsignedInteger('idUsuario');
             $table->timestamps();
 
+            $table->foreign('idUsuario')->references('id')->on('usuario')->onDelete('cascade');
+            $table->foreign('idTienda')->references('id')->on('tienda')->onDelete('cascade');
+
             $table->primary(['idTienda','idUsuario']);
         });
     }
